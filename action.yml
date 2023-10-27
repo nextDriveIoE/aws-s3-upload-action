@@ -1,0 +1,23 @@
+name: 'AWS S3 Upload Action'
+description: 'This action allows you to upload file to AWS S3.'
+runs:
+  using: docker
+  image: Dockerfile
+inputs:
+  s3_folder:
+    description: "$s3_folder"
+  source:
+    description: "The file path that the file will be sourced from."
+    required: true
+  cloudfront_id:
+    description: "The file path that the file will be sourced from."
+    required: true
+  aws_access_key_id:
+    description: "The AWS access key part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
+    required: true
+  aws_secret_access_key:
+    description: "The AWS access key part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
+    required: true
+  aws_region:
+    description: "This is the region of the bucket. S3 namespace is global but the bucket is regional."
+    required: true
