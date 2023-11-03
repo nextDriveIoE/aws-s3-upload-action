@@ -36,7 +36,7 @@ function main {
   aws --version
 
   aws s3 rm --recursive s3://$INPUT_S3_FOLDER
-  aws s3 cp --recursive $INPUT_SOURCE/ s3://$INPUT_S3_FOLDER
+  aws s3 cp --recursive ./src/$INPUT_SOURCE/ s3://$INPUT_S3_FOLDER
   aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /$INPUT_SOURCE/*
 
 }
