@@ -3,6 +3,7 @@ function configuration_setting {
   then
     echo "AWS Access Key Id was not found. Using configuration from previous step."
   else
+    echo "$INPUT_AWS_ACCESS_KEY_ID"
     aws configure set aws_access_key_id "$INPUT_AWS_ACCESS_KEY_ID"
   fi
 
@@ -32,12 +33,10 @@ function validate {
 function main {
   configuration_setting
   validate
-  ls
+  echo {ls}
 
-
-
-#  aws --version
-#  aws s3 rm --recursive s3://$INPUT_S3_FOLDER
+  aws --version
+  aws s3 rm --recursive s3://$INPUT_S3_FOLDER
 #  aws s3 cp --recursive ./src/$INPUT_SOURCE/ s3://$INPUT_S3_FOLDER
   # aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /$INPUT_SOURCE/*
 
