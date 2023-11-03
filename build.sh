@@ -3,7 +3,6 @@ function configuration_setting {
   then
     echo "AWS Access Key Id was not found. Using configuration from previous step."
   else
-    echo "$INPUT_AWS_ACCESS_KEY_ID"
     aws configure set aws_access_key_id "$INPUT_AWS_ACCESS_KEY_ID"
   fi
 
