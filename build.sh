@@ -29,13 +29,30 @@ function validate {
     fi
 }
 
+function uploadFromLocalFile() {
+    aws --version
+    aws s3 rm --recursive s3://$INPUT_S3_FOLDER
+    aws s3 cp --recursive ./src/$INPUT_SOURCE/ s3://$INPUT_S3_FOLDER
+}
+
+function uploadFromS3() {
+      aws --version
+      aws s3 rm --recursive s3://$INPUT_S3_FOLDER
+      aws s3 cp --recursive s3://$INPUT_SOURCE s3://$INPUT_S3_FOLDER
+}
+
 function main {
   configuration_setting
   validate
 
-  aws --version
-  aws s3 rm --recursive s3://$INPUT_S3_FOLDER
-  aws s3 cp --recursive ./src/$INPUT_SOURCE/ s3://$INPUT_S3_FOLDER
+  if [[ "$INPUT_UPLOAD_FROM" == "S3" ]]; then
+    uploadFromS3
+  else
+    uploadFromLocalFile
+  fi
+
+
+
   # aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /$INPUT_SOURCE/*
 
 }
