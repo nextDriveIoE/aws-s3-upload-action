@@ -1,16 +1,16 @@
-function configuration_setting {
-  if [ -z "$INPUT_AWS_ACCESS_KEY_ID" ]
+function configuration_setting() {
+  if [ -z "$1" ]
   then
     echo "AWS Access Key Id was not found. Using configuration from previous step."
   else
-    aws configure set aws_access_key_id "$INPUT_AWS_ACCESS_KEY_ID"
+    aws configure set aws_access_key_id "$1"
   fi
 
-  if [ -z "$INPUT_AWS_SECRET_ACCESS_KEY" ]
+  if [ -z "$2" ]
   then
     echo "AWS Secret Access Key was not found. Using configuration from previous step."
   else
-    aws configure set aws_secret_access_key "$INPUT_AWS_SECRET_ACCESS_KEY"
+    aws configure set aws_secret_access_key "$2"
   fi
 
   if [ -z "$INPUT_AWS_REGION" ]
@@ -36,13 +36,17 @@ function uploadFromLocalFile() {
 }
 
 function uploadFromS3() {
+
       aws --version
-      aws s3 rm --recursive s3://$INPUT_S3_FOLDER
-      aws s3 cp --recursive s3://$INPUT_SOURCE s3://$INPUT_S3_FOLDER
+      mkdir tmp
+#     aws s3 rm --recursive s3://$INPUT_S3_FOLDER
+      aws s3 cp --recursive s3://$INPUT_SOURCE ./tmp
+      configuration_setting $INPUT_TARGET_AWS_ACCESS_KEY_ID $INPUT_TARGET_AWS_SECRET_ACCESS_KEY
+      aws s3 cp --recursive ./tmp s3://$INPUT_S3_FOLDER
 }
 
 function main {
-  configuration_setting
+  configuration_setting $INPUT_AWS_ACCESS_KEY_ID $INPUT_AWS_SECRET_ACCESS_KEY
   validate
 
   if [[ "$INPUT_UPLOAD_FROM" == "S3" ]]; then

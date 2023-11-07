@@ -9,4 +9,6 @@
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: 'ap-northeast-1'
           upload_from: 'S3' | 'LOCAL'
+          target_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          target_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```

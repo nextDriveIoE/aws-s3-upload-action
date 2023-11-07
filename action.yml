@@ -13,11 +13,17 @@ inputs:
     description: "Cloudfront id"
     required: true
   aws_access_key_id:
-    description: "The AWS access key part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
+    description: "The AWS access id part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
     required: true
   aws_secret_access_key:
     description: "The AWS access key part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
     required: true
+  target_aws_access_key_id:
+    description: "The target AWS access id part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
+    required: false
+  target_aws_secret_access_key:
+    description: "The target AWS access key part of your credentials. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/"
+    required: false
   aws_region:
     description: "This is the region of the bucket. S3 namespace is global but the bucket is regional."
     required: true
