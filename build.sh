@@ -4,14 +4,14 @@ function configuration_setting() {
   then
     echo "AWS Access Key Id was not found. Using configuration from previous step."
   else
-    aws configure set aws_access_key_id "$INPUT_AWS_ACCESS_KEY_ID"
+    aws configure set aws_access_key_id "$1"
   fi
 
   if [ -z "$2" ]
   then
     echo "AWS Secret Access Key was not found. Using configuration from previous step."
   else
-    aws configure set aws_secret_access_key "$INPUT_AWS_SECRET_ACCESS_KEY"
+    aws configure set aws_secret_access_key "$2"
   fi
 
   if [ -z "$INPUT_AWS_REGION" ]
@@ -55,8 +55,6 @@ function main {
   else
     uploadFromLocalFile
   fi
-
-
 
   # aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /$INPUT_SOURCE/*
 
