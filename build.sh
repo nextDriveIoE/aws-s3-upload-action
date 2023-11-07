@@ -37,15 +37,13 @@ function uploadFromLocalFile() {
 
 function uploadFromS3() {
       echo "Source: "$INPUT_SOURCE
+      echo "Target: "$INPUT_S3_FOLDER
 
       aws --version
       mkdir tmp
-      ls
       aws s3 cp --recursive s3://$INPUT_SOURCE tmp || { echo "Error downloading files from S3"; exit 1; }
-#      configuration_setting $INPUT_TARGET_AWS_ACCESS_KEY_ID $INPUT_TARGET_AWS_SECRET_ACCESS_KEY
-
-      ls tmp
-#      aws s3 cp --recursive ./tmp s3://$INPUT_S3_FOLDER
+      configuration_setting $INPUT_TARGET_AWS_ACCESS_KEY_ID $INPUT_TARGET_AWS_SECRET_ACCESS_KEY
+      aws s3 cp --recursive ./tmp s3://$INPUT_S3_FOLDER
 }
 
 function main {
