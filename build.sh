@@ -4,14 +4,14 @@ function configuration_setting() {
   then
     echo "AWS Access Key Id was not found. Using configuration from previous step."
   else
-    aws configure set aws_access_key_id "$1"
+    aws configure set aws_access_key_id "$INPUT_AWS_ACCESS_KEY_ID"
   fi
 
   if [ -z "$2" ]
   then
     echo "AWS Secret Access Key was not found. Using configuration from previous step."
   else
-    aws configure set aws_secret_access_key "$2"
+    aws configure set aws_secret_access_key "$INPUT_AWS_SECRET_ACCESS_KEY"
   fi
 
   if [ -z "$INPUT_AWS_REGION" ]
