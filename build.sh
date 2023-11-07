@@ -43,7 +43,7 @@ function uploadFromS3() {
       mkdir tmp
       aws s3 cp --recursive s3://$INPUT_SOURCE tmp || { echo "Error downloading files from S3"; exit 1; }
       configuration_setting $INPUT_TARGET_AWS_ACCESS_KEY_ID $INPUT_TARGET_AWS_SECRET_ACCESS_KEY
-      aws s3 cp --recursive ./tmp/ s3://$INPUT_S3_FOLDER || { echo "Error uploading files to S3"; exit 1;
+      aws s3 cp --recursive ./tmp/ s3://$INPUT_S3_FOLDER || { echo "Error uploading files to S3"; exit 1; }
 }
 
 function main {
