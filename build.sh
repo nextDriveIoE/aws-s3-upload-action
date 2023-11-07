@@ -41,11 +41,12 @@ function uploadFromS3() {
 
       aws --version
       mkdir tmp
+      ls
 #     aws s3 rm --recursive s3://$INPUT_S3_FOLDER
-      aws s3 cp --recursive s3://$INPUT_SOURCE ./tmp
+      aws s3 cp --recursive s3://$INPUT_SOURCE tmp
 #      configuration_setting $INPUT_TARGET_AWS_ACCESS_KEY_ID $INPUT_TARGET_AWS_SECRET_ACCESS_KEY
 
-      ls ./tmp
+      ls tmp
 #      aws s3 cp --recursive ./tmp s3://$INPUT_S3_FOLDER
 }
 
