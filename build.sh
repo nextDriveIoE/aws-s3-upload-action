@@ -32,8 +32,7 @@ function validate {
 
 function uploadFromLocalFile() {
     aws --version
-    aws s3 rm --recursive s3://$INPUT_S3_FOLDER
-    aws s3 cp --recursive ./src/$INPUT_SOURCE/ s3://$INPUT_S3_FOLDER
+    aws s3 cp --recursive ./src/$INPUT_SOURCE/ s3://$INPUT_S3_FOLDER || { echo "Error downloading files from S3"; exit 1; }
 }
 
 function uploadFromS3() {
@@ -42,7 +41,6 @@ function uploadFromS3() {
       aws --version
       mkdir tmp
       ls
-#     aws s3 rm --recursive s3://$INPUT_S3_FOLDER
       aws s3 cp --recursive s3://$INPUT_SOURCE tmp || { echo "Error downloading files from S3"; exit 1; }
 #      configuration_setting $INPUT_TARGET_AWS_ACCESS_KEY_ID $INPUT_TARGET_AWS_SECRET_ACCESS_KEY
 
