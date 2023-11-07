@@ -37,6 +37,7 @@ function uploadFromLocalFile() {
 }
 
 function uploadFromS3() {
+      echo "Source: "$INPUT_SOURCE
 
       aws --version
       mkdir tmp
