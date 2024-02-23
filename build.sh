@@ -56,8 +56,7 @@ function main {
     uploadFromLocalFile
   fi
 
-  # aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /$INPUT_SOURCE/*
-
+  aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /*
 }
 
 main
