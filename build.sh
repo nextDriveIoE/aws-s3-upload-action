@@ -46,6 +46,12 @@ function uploadFromS3() {
       aws s3 cp --recursive ./tmp/ s3://$INPUT_S3_FOLDER || { echo "Error uploading files to S3"; exit 1; }
 }
 
+function uploadCloudFront() {
+  if [ -z "$INPUT_CLOUDFRONT_ID" ]; else
+    aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /*
+  fi
+}
+
 function main {
   configuration_setting $INPUT_AWS_ACCESS_KEY_ID $INPUT_AWS_SECRET_ACCESS_KEY
   validate
@@ -56,7 +62,7 @@ function main {
     uploadFromLocalFile
   fi
 
-  aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /*
+  uploadCloudFront
 }
 
 main
