@@ -11,4 +11,5 @@
           upload_from: 'S3' | 'LOCAL'
           target_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           target_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          cloudfront_id: ''
 ```
