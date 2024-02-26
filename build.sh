@@ -47,7 +47,7 @@ function uploadFromS3() {
 }
 
 function uploadCloudFront() {
-  if [ -z "$INPUT_CLOUDFRONT_ID" ]; else
+  if [ -n "$INPUT_CLOUDFRONT_ID" ]; then
     aws cloudfront create-invalidation --distribution-id $INPUT_CLOUDFRONT_ID --paths /*
   fi
 }
